@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using gitbang.ViewModels;
-using gitbang.Views;
+using Gitbang.ViewModels;
+using Gitbang.Views;
 
-namespace gitbang
+namespace Gitbang
 {
     public class App : Application
     {

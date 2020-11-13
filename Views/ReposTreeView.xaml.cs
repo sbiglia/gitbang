@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Gitbang.Views
 {
-    public class MainWindow : Window
+    public class ReposTreeView : UserControl
     {
-        public MainWindow()
+        public ReposTreeView()
         {
             InitializeComponent();
         }

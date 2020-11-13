@@ -6,7 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using gitbang.ViewModels;
 
-namespace gitbang
+namespace Gitbang
 {
     public class ViewLocator : IDataTemplate
     {

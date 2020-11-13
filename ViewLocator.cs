@@ -4,7 +4,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using gitbang.ViewModels;
+using Gitbang.ViewModels;
 
 namespace Gitbang
 {

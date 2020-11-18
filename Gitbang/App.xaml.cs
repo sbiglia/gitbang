@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Gitbang.Services;
 using Gitbang.ViewModels;
 using Gitbang.Views;
 
@@ -17,6 +18,8 @@ namespace Gitbang
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                var config = new 
+                var repo = new DataRepository()
                 desktop.MainWindow = new MainWindow
                 {
                     DataContext = new MainWindowViewModel(),

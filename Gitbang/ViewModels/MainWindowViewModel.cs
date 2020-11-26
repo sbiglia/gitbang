@@ -14,7 +14,7 @@ namespace Gitbang.ViewModels
         public MainWindowViewModel(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
-            Repos = new ReposTreeViewModel(dataRepository.GetAllRepositories(), dataRepository.GetAllGroups());
+            Repos = new ReposTreeViewModel(dataRepository.GetAllTreeNodeModels());
         }
     }
 }

@@ -4,9 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Gitbang.Views.ReposTreeView">
-  <DockPanel>
-      <TreeView>
-          
-      </TreeView>
-  </DockPanel>
+    <UserControl.Styles>
+        <Style Selector="TreeViewItem">
+            <Setter Property="IsExpanded" Value="True" />
+        </Style>
+    </UserControl.Styles>
+    <StackPanel>
+        <TreeView Items="{Binding Nodes, Mode=OneWay}">
+            <TreeView.Styles>
+            <Style Selector="TreeViewItem[IsSelected=true]">
+                <Setter Property="IsExpanded" Value="True"/>
+            </Style>
+                </TreeView.Styles>
+            <TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}" >
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </TreeDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Button Content="Add"></Button>
+        <Button Content="Remove"></Button>
+    </StackPanel>
 </UserControl>

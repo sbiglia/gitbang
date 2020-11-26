@@ -23,7 +23,7 @@ namespace Gitbang.Database
             var serviceProvider = CreateServices();
             using var scope = serviceProvider.CreateScope();
             //CheckDatabaseExists();
-            Console.WriteLine("Updating database [new_beginning]");
+            Console.WriteLine("Updating database [Gitbang]");
             UpdateDatabase(scope.ServiceProvider);
             Console.WriteLine("Database was upgraded!.");
         }

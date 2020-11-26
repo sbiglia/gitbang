@@ -14,6 +14,7 @@ namespace Gitbang.Services
         Group GetById(int id);
 
         List<Repository> GetAllRepositories();
+        List<TreeNodeModel> GetAllTreeNodeModels();
 
     }
 }

@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using DynamicData;
 using Gitbang.Models;
+using Gitbang.Util;
 
 namespace Gitbang.ViewModels
 {
     public class ReposTreeViewModel : ViewModelBase
     {
 
-        public ObservableCollection<Repository> Repositories;
-        public ObservableCollection<Group> Groups;
+        public ObservableCollection<TreeNodeModel> Nodes { get; }
         
-        public ReposTreeViewModel(IEnumerable<Repository> repositories, IEnumerable<Group> groups)
+        public ReposTreeViewModel(IEnumerable<TreeNodeModel> treeNodes)
         {
-            Repositories = new ObservableCollection<Repository>(repositories);
-            Groups = new ObservableCollection<Group>(groups);
+            Nodes =  new ObservableCollection<TreeNodeModel>(treeNodes);
         }
         
     }

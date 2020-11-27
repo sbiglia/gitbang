@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gitbang", "Gitbang\Gitbang.csproj", "{6FA6A8B2-6DDF-4096-B6B6-255495EDAF87}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gitbang", "Gitbang\Gitbang.csproj", "{6FA6A8B2-6DDF-4096-B6B6-255495EDAF87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gitbang.Database", "Gitbang.Database\Gitbang.Database.csproj", "{FF8FA022-D364-403B-8E9F-131C467DACCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gitbang.Database", "Gitbang.Database\Gitbang.Database.csproj", "{FF8FA022-D364-403B-8E9F-131C467DACCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaSimpleTest", "AvaloniaSimpleTest\AvaloniaSimpleTest.csproj", "{2E839B13-12CF-493E-87FD-2BE1B6919FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,15 @@ Global
 		{FF8FA022-D364-403B-8E9F-131C467DACCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF8FA022-D364-403B-8E9F-131C467DACCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF8FA022-D364-403B-8E9F-131C467DACCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E839B13-12CF-493E-87FD-2BE1B6919FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E839B13-12CF-493E-87FD-2BE1B6919FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E839B13-12CF-493E-87FD-2BE1B6919FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E839B13-12CF-493E-87FD-2BE1B6919FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77DDDA1C-AC7B-4475-A2BD-71A535DCC9D5}
 	EndGlobalSection
 EndGlobal

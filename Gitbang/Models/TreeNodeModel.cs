@@ -5,7 +5,7 @@ namespace Gitbang.Models
 {
     public class TreeNodeModel : ModelBase
     {
-        public ObservableCollection<TreeNodeModel> Children;
+        public ObservableCollection<TreeNodeModel> Children { get; set; }
 
         public string Name
         {
@@ -17,10 +17,7 @@ namespace Gitbang.Models
 
         public bool IsGroup => ItemType == TreeNodeItemType.Group;
         public bool IsRepository => ItemType == TreeNodeItemType.Repository;
-        
-        
-        
-        
+                
 
     }
 }

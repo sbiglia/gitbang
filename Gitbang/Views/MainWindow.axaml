@@ -7,6 +7,10 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Gitbang.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Gitbang"
-        Content="{Binding Repos}">
+        Title="Gitbang">
+  <DockPanel>
+    <views:ReposTreeView DockPanel.Dock="Left"></views:ReposTreeView>
+    <views:RepoDocumentView DockPanel.Dock="Right"></views:RepoDocumentView>
+  </DockPanel>
+  
 </Window>

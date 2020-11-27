@@ -14,7 +14,7 @@ namespace Gitbang.ViewModels
         public ReposTreeViewModel(IEnumerable<TreeNodeModel> treeNodes)
         {
             Nodes =  new ObservableCollection<TreeNodeModel>(treeNodes);
-        }
+        }       
         
     }
 }

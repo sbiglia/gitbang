@@ -13,7 +13,11 @@
         <TreeView Items="{Binding Repos.Nodes}">
           <TreeView.DataTemplates>
               <TreeDataTemplate ItemsSource="{Binding Children}" >
-                  <TextBlock Text="{Binding Name}"></TextBlock>
+                  <StackPanel Orientation="Horizontal">
+                      <Image Source="/Assets/Icons/folder-closed-16.png" IsVisible="{Binding IsGroup}"></Image>
+                      <Image Source="/Assets/Icons/repository-16.png" IsVisible="{Binding IsRepository}"></Image>
+                      <TextBlock Text="{Binding Name}"></TextBlock>    
+                  </StackPanel>
               </TreeDataTemplate>
            </TreeView.DataTemplates>
         </TreeView>

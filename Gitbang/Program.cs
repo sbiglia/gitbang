@@ -1,7 +1,6 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Logging.Serilog;
 using Avalonia.ReactiveUI;
 
 namespace Gitbang
@@ -18,7 +17,8 @@ namespace Gitbang
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToDebug()
+                .With(new SkiaOptions { MaxGpuResourceSizeBytes = 8096000 })
+                .LogToTrace()
                 .UseReactiveUI();
     }
 }

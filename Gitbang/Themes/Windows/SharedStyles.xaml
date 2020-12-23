@@ -16,7 +16,7 @@
   <!-- Font -->
 
   <Style Selector="TextBlock">
-    <Setter Property="FontFamily" Value="avares://Rbmk.Radish.Views/Fonts/SegoeUI#Segoe UI" />
+    <Setter Property="FontFamily" Value="resm:Gitbang.Fonts.SegoeUI*.ttf?assembly=Gitbang#Segoe UI" />
     <Setter Property="FontWeight" Value="Regular" />
     <Setter Property="FontSize" Value="12" />
     <Setter Property="Foreground" Value="#272727" />

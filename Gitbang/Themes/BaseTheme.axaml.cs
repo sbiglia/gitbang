@@ -1,10 +1,11 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
 
 namespace Gitbang.Themes
 {
-    public class BaseTheme : UserControl
+    public class BaseTheme : Styles
     {
         public BaseTheme()
         {

@@ -17,7 +17,7 @@ namespace Gitbang
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .With(new SkiaOptions { MaxGpuResourceSizeBytes = 8096000 })
+                .With(new SkiaOptions {MaxGpuResourceSizeBytes = 8096000})
                 .LogToTrace()
                 .UseReactiveUI();
     }

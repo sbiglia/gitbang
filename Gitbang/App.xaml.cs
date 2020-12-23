@@ -9,6 +9,9 @@ using Gitbang.Views;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
+using ABI.Windows.UI.Composition;
+using Gitbang.Themes;
 
 namespace Gitbang
 {
@@ -22,6 +25,7 @@ namespace Gitbang
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
+            ApplyStyles();
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -29,8 +33,8 @@ namespace Gitbang
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 var builder = new ConfigurationBuilder()
-                                 .SetBasePath(Path.Combine(AppContext.BaseDirectory))
-                                 .AddJsonFile("appsettings.json", optional: true);
+                    .SetBasePath(Path.Combine(AppContext.BaseDirectory))
+                    .AddJsonFile("appsettings.json", optional: true);
 
                 _configuration = builder.Build();
 
@@ -38,7 +42,7 @@ namespace Gitbang
                 _executer = new Executer();
 
                 var repo = new DataRepository(_configuration, _commandText, _executer);
-                
+
                 desktop.MainWindow = new MainWindow
                 {
                     DataContext = new MainWindowViewModel(repo),
@@ -52,6 +56,26 @@ namespace Gitbang
             }
 
             base.OnFrameworkInitializationCompleted();
+        }
+        
+        private void ApplyStyles()
+        {
+            Styles.Add(new BaseTheme());
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Styles.Add(new MacosTheme());
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Styles.Add(new WindowsTheme());
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Styles.Add(new WindowsTheme());
+            }
         }
     }
 }

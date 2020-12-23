@@ -1,13 +1,11 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 
-namespace Gitbang.Themes.Windows
+namespace Gitbang.Themes
 {
-    public class SharedStyles : Style
+    public class WindowsTheme : Styles
     {
-        public SharedStyles()
+        public WindowsTheme()
         {
             this.InitializeComponent();
         }

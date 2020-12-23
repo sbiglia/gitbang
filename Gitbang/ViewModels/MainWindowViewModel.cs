@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Gitbang.Models;
 using Gitbang.Services;
+using Gitbang.ViewModels.ReposExplorer;
 
 namespace Gitbang.ViewModels
 {

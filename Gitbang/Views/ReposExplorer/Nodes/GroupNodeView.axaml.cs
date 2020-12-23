@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace Gitbang.Views
+namespace Gitbang.Views.ReposExplorer.Nodes
 {
-    public class ReposTreeView : UserControl
+    public class GroupNodeView : UserControl
     {
-        public ReposTreeView()
+        public GroupNodeView()
         {
             InitializeComponent();
         }

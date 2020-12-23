@@ -16,15 +16,26 @@
     <Compile Update="Views\RepoDocumentView.axaml.cs">
       <DependentUpon>RepoDocumentView.axaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ReposTreeView.axaml.cs">
-      <DependentUpon>ReposTreeView.axaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\MainWindow.axaml.cs">
       <DependentUpon>MainWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Themes\Windows\SharedStyles.xaml.cs">
+      <DependentUpon>SharedStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Themes\WindowsTheme.xaml.cs">
+      <DependentUpon>WindowsTheme.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Themes\Base\IconStyles.xaml.cs">
+      <DependentUpon>IconStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ReposExplorer\ReposTreeView.axaml.cs">
+      <DependentUpon>ReposTreeView.axaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0-preview6" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0-preview6" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview6" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0-preview6" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview6" />
@@ -40,5 +51,67 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Themes\BaseTheme.axaml" />
+    <EmbeddedResource Include="Themes\BaseTheme.axaml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Remove="Fonts\SegoeUI\segoeui.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\segoeui.ttf" />
+    <None Remove="Fonts\SegoeUI\segoeuib.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\segoeuib.ttf" />
+    <None Remove="Fonts\SegoeUI\segoeuii.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\segoeuii.ttf" />
+    <None Remove="Fonts\SegoeUI\segoeuil.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\segoeuil.ttf" />
+    <None Remove="Fonts\SegoeUI\segoeuisl.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\segoeuisl.ttf" />
+    <None Remove="Fonts\SegoeUI\segoeuiz.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\segoeuiz.ttf" />
+    <None Remove="Fonts\SegoeUI\seguibl.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\seguibl.ttf" />
+    <None Remove="Fonts\SegoeUI\seguibli.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\seguibli.ttf" />
+    <None Remove="Fonts\SegoeUI\seguili.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\seguili.ttf" />
+    <None Remove="Fonts\SegoeUI\seguisb.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\seguisb.ttf" />
+    <None Remove="Fonts\SegoeUI\seguisbi.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\seguisbi.ttf" />
+    <None Remove="Fonts\SegoeUI\seguisli.ttf" />
+    <EmbeddedResource Include="Fonts\SegoeUI\seguisli.ttf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Black.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Black.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-BlackItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-BlackItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Bold.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Bold.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-BoldItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-BoldItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Heavy.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Heavy.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-HeavyItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-HeavyItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Light.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Light.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-LightItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-LightItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Medium.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Medium.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-MediumItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-MediumItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Regular.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Regular.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-RegularItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-RegularItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Semibold.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Semibold.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-SemiboldItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-SemiboldItalic.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-Thin.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-Thin.otf" />
+    <None Remove="Fonts\SanFrancisco\SF-Pro-Display-ThinItalic.otf" />
+    <EmbeddedResource Include="Fonts\SanFrancisco\SF-Pro-Display-ThinItalic.otf" />
   </ItemGroup>
 </Project>

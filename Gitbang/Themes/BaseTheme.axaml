@@ -1,8 +1,0 @@
-﻿<Styles
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    x:Class="Gitbang.Themes.BaseTheme">
-    
-    <StyleInclude Source="avares://Gitbang/Themes/Base/IconStyles.xaml" />
-    
-</Styles>

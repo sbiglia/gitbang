@@ -1,0 +1,18 @@
+<gitbangOld:FluentWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Gitbang.ViewModels;assembly=Gitbang"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gitbangOld="clr-namespace:Gitbang_old"
+        xmlns:reposExplorer="clr-namespace:Gitbang_old.Views.ReposExplorer"
+        xmlns:views="clr-namespace:Gitbang_old.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Gitbang_old.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Gitbang">
+  <DockPanel LastChildFill="true">
+    <reposExplorer:ReposTreeView DockPanel.Dock="Left"></reposExplorer:ReposTreeView>
+    <views:RepoDocumentView DockPanel.Dock="Right"></views:RepoDocumentView>
+  </DockPanel>
+  
+</gitbangOld:FluentWindow>

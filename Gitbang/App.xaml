@@ -1,14 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Gitbang"
-             x:Class="Gitbang.App">
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
-
+             x:Class="Gitbang.App"
+             Name="Gitbang">
     <Application.Styles>
         <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
         <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>
-        <!--<StyleInclude Source="avares://Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.Datagrid" />-->
+        <StyleInclude Source="avares://AvaloniaEdit/AvaloniaEdit.xaml" />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Default.xaml"/>
+        <StyleInclude Source="avares://SharpTreeView/Themes/TreeView.xaml" />
+        <StyleInclude Source="avares://Gitbang.Core/Controls/DockedPane.xaml" />
+        <StyleInclude Source="avares://Gitbang.Core/Controls/SearchBox.xaml" />
+
+        <Style Selector="Window.DialogWindow" >
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+        </Style>
+
+        <Style Selector="Button" >
+            <Setter Property="MinWidth" Value="73" />
+            <Setter Property="Padding" Value="9,1,9,1" />
+        </Style>
+
+        <Style Selector="Button.ToolBarItem" >
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="MinWidth" Value="20" />
+            <Setter Property="MinHeight" Value="20" />
+        </Style>
+
+        <Style Selector="Button.ToolBarItem:pointover /template/ ContentPresenter" >
+            <Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
+        </Style>
+
+        <Style Selector="Button.ToolBarItem:pressed /template/ ContentPresenter" >
+            <Setter Property="Background" Value="{DynamicResource ThemeAccentBrush4}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThemeAccentBrush}"/>
+        </Style>
     </Application.Styles>
 </Application>

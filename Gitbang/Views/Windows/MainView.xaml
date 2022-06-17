@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tv="clr-namespace:ICSharpCode.TreeView;assembly=SharpTreeView"
+        xmlns:properties="clr-namespace:Gitbang.Core.Properties;assembly=Gitbang.Core"
+        xmlns:controls="clr-namespace:Gitbang.Core.Controls"
+        Title="GitBang"
+        MinWidth="250"
+        MinHeight="200"
+        UseLayoutRounding="True"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="500" d:DesignWidth="500"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        x:Class="Gitbang.Views.Windows.MainView">
+
+    <NativeMenu.Menu>
+        <NativeMenu>
+        </NativeMenu>
+    </NativeMenu.Menu>
+    <DockPanel>
+		<Menu DockPanel.Dock ="Top" Name ="mainMenu" Height="23">
+			<MenuItem Header="_File">
+                <MenuItem Header="_Open..."/>
+                <Separator/>
+                <MenuItem Header="_Exit"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+		</Menu>
+        <ListBox Name="toolBar" BorderThickness="0" Padding="2" DockPanel.Dock="Top">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="4"/>
+                </ItemsPanelTemplate>
+				
+            </ListBox.ItemsPanel>
+			<TextBlock Text="{x:Static properties:Resources.Themes}" VerticalAlignment="Center"/>
+            <ComboBox x:Name="Themes" 
+                      Items="{Binding Themes, Mode=OneWay}"
+                      SelectedIndex="0" Width="100">
+                
+            </ComboBox>
+        </ListBox>
+        <Border x:Name="statusBar" BorderThickness="1" BorderBrush="Gray" DockPanel.Dock="Bottom" Height="26" IsVisible="false">
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       x:Name="StatusLabel"
+                       ToolTip.Tip="Status"
+                       Text="Stand By..."/>
+        </Border>
+        <Grid x:Name="mainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    MinWidth="100"
+                    Width="0.4*" />
+                <ColumnDefinition
+                    Width="3" />
+                <ColumnDefinition
+                    MinWidth="100"
+                    Width="0.6*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="*" />
+            </Grid.RowDefinitions>
+            <tv:SharpTreeView
+                Name="treeView"
+                ShowRoot="False"
+                AllowDropOrder="True"
+                DragDrop.AllowDrop="True"
+                BorderThickness="0,1,1,1" IsVisible="true" />
+        </Grid>
+    </DockPanel>
+
+</Window>

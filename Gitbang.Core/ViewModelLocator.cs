@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using Avalonia;
 using Avalonia.Controls;
+using Gitbang.Core.Base;
 using Gitbang.Core.Controls;
 
 namespace Gitbang.Core
@@ -52,9 +53,9 @@ namespace Gitbang.Core
             var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);
             var viewModelType = Type.GetType(viewModelName);
 
-            //var viewModel = ServiceLocator.Instance.Container.GetService(viewModelType) as ViewModelBase;
-            //view.DataContext = viewModel;
-            //viewModel.IsLoaded = true;
+            var viewModel = ServiceLocator.Instance.Container.GetService(viewModelType) as ViewModelBase;
+            view.DataContext = viewModel;
+            viewModel.IsLoaded = true;
         }
     }
 }

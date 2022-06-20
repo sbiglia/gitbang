@@ -30,6 +30,7 @@
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.15" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.15" />
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="0.10.15" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +50,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

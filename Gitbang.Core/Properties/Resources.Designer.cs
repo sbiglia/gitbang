@@ -86,5 +86,14 @@ namespace Gitbang.Core.Properties {
                 return ResourceManager.GetString("Themes", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to load theme on {0}.
+        /// </summary>
+        public static string UnableLoadTheme {
+            get {
+                return ResourceManager.GetString("UnableLoadTheme", resourceCulture);
+            }
+        }
     }
 }

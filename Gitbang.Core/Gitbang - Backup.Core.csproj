@@ -41,7 +41,6 @@
     </Content>
     <Content Include="Themes\Light.xaml">
       <Generator></Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

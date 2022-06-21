@@ -6,6 +6,8 @@
         </Border>
     </Design.PreviewWith>
 
+    <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>
+
 	<Styles.Resources>
 		<Color x:Key="Shadow.ShadowColor">#40000000</Color>
 		<GradientStops x:Key="Shadow.ShadowStops">

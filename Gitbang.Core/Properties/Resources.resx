@@ -126,4 +126,7 @@
   <data name="Themes" xml:space="preserve">
     <value>Themes</value>
   </data>
+  <data name="UnableLoadTheme" xml:space="preserve">
+    <value>Unable to load theme on {0}</value>
+  </data>
 </root>

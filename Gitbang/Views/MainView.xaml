@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:tv="clr-namespace:ICSharpCode.TreeView;assembly=SharpTreeView"
         xmlns:properties="clr-namespace:Gitbang.Core.Properties;assembly=Gitbang.Core"
         Title="GitBang"
         MinWidth="250"
@@ -10,13 +9,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="500" d:DesignWidth="500"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        x:Class="Gitbang.Views.Windows.MainView">
+        x:Class="Gitbang.Views.MainView">
 	<NativeMenu.Menu>
 		<NativeMenu>
 		</NativeMenu>
 	</NativeMenu.Menu>
 	<DockPanel>
-		<Menu DockPanel.Dock ="Top" Name ="mainMenu" Height="23">
+		<Menu DockPanel.Dock ="Top" Name ="MainMenu" >
 			<MenuItem Header="_File">
 				<MenuItem Header="_Open..."/>
 				<Separator/>
@@ -27,7 +26,7 @@
 				<MenuItem Header="Paste"/>
 			</MenuItem>
 		</Menu>
-		<ListBox Name="toolBar" BorderThickness="0" Padding="2" DockPanel.Dock="Top">
+		<ListBox Name="ToolBar" BorderThickness="0" Padding="2" DockPanel.Dock="Top">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<StackPanel Orientation="Horizontal" Spacing="4"/>
@@ -40,14 +39,14 @@
 				<ComboBoxItem>Dark</ComboBoxItem>
             </ComboBox>
 		</ListBox>
-		<Border x:Name="statusBar" BorderThickness="1" BorderBrush="Gray" DockPanel.Dock="Bottom" Height="26" IsVisible="false">
+		<Border x:Name="StatusBar" BorderThickness="1" BorderBrush="Gray" DockPanel.Dock="Bottom" Height="26" IsVisible="false">
 			<TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        x:Name="StatusLabel"
                        ToolTip.Tip="Status"
                        Text="Stand By..."/>
 		</Border>
-		<Grid x:Name="mainGrid">
+		<Grid x:Name="MainGrid">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition
                     MinWidth="100"
@@ -62,12 +61,20 @@
 				<RowDefinition
                     Height="*" />
 			</Grid.RowDefinitions>
-			<tv:SharpTreeView
-                Name="treeView"
-                ShowRoot="False"
-                AllowDropOrder="True"
+			<TreeView
+                Name="TreeView"
                 DragDrop.AllowDrop="True"
-                BorderThickness="0,1,1,1" IsVisible="true" />
+				BorderThickness="0,1,1,1" IsVisible="true" 
+                Items="{Binding Node.Children, Mode=OneWay}"
+                SelectionMode="Single">
+				<TreeView.ItemTemplate>
+					<TreeDataTemplate ItemsSource ="{Binding Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
             <GridSplitter
                 Grid.Column="1"
                 Margin="-5,0"

@@ -24,8 +24,6 @@
     <None Remove="Controls\CustomDialog.xaml" />
     <None Remove="Controls\DockedPane.xaml" />
     <None Remove="Controls\SearchBox.xaml" />
-    <None Remove="Themes\Dark.xaml" />
-    <None Remove="Themes\Light.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,26 +33,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Themes\Dark.xaml">
-      <Generator></Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Themes\Light.xaml">
-      <Generator></Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Avalonia.AvaloniaEdit" Version="0.10.12.2" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.15" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.15" />
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="0.10.15" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SharpTreeView\SharpTreeView.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,6 +57,7 @@
 
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

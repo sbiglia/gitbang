@@ -7,7 +7,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Gitbang.Core.Extensions;
-using Gitbang.Views.Windows;
+using Gitbang.Views;
 
 
 namespace Gitbang

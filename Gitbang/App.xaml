@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
              x:Class="Gitbang.App"
              Name="Gitbang">
     <Application.Styles>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseDark.xaml"/>
-        <StyleInclude Source="avares://AvaloniaEdit/AvaloniaEdit.xaml" />
-        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Default.xaml"/>
-        <StyleInclude Source="avares://SharpTreeView/Themes/TreeView.xaml" />
+        <styling:FluentAvaloniaTheme />
         <StyleInclude Source="avares://Gitbang.Core/Controls/DockedPane.xaml" />
         <StyleInclude Source="avares://Gitbang.Core/Controls/SearchBox.xaml" />
 

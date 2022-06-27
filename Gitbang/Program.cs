@@ -3,6 +3,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Dialogs;
 using Avalonia.Logging;
+using Projektanker.Icons.Avalonia;
+using Projektanker.Icons.Avalonia.FontAwesome;
+using Projektanker.Icons.Avalonia.MaterialDesign;
 
 namespace Gitbang
 {
@@ -34,6 +37,9 @@ namespace Gitbang
 #endif
             var app = result
                 .UsePlatformDetect()
+                .WithIcons(container => container
+                .Register<FontAwesomeIconProvider>()
+                .Register<MaterialDesignIconProvider>())
                 .With(new X11PlatformOptions
                 {
                     UseDBusMenu = true

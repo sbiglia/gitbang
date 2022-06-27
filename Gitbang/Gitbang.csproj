@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <None Remove="App.xaml" />
+    <None Remove="Assets\Icons.xaml" />
     <None Remove="MainWindow.xaml" />
   </ItemGroup>
 
@@ -43,8 +44,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Include="Assets\Icons.xaml">
+      <Generator></Generator>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="0.10.15" />
     <PackageReference Include="FluentAvaloniaUI" Version="1.4.1" />
+    <PackageReference Include="Projektanker.Icons.Avalonia" Version="5.0.2" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="5.0.2" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>

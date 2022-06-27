@@ -8,6 +8,7 @@
         UseLayoutRounding="True"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="500" d:DesignWidth="500"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
         mc:Ignorable="d"
         x:Class="Gitbang.Views.MainView">
 	<NativeMenu.Menu>
@@ -31,7 +32,6 @@
 				<ItemsPanelTemplate>
 					<StackPanel Orientation="Horizontal" Spacing="4"/>
 				</ItemsPanelTemplate>
-
 			</ListBox.ItemsPanel>
 			<TextBlock Text="{x:Static properties:Resources.Themes}" VerticalAlignment="Center"/>
 			<ComboBox x:Name="Themes" SelectedIndex="0" Width="100">
@@ -69,10 +69,19 @@
                 SelectionMode="Single">
 				<TreeView.ItemTemplate>
 					<TreeDataTemplate ItemsSource ="{Binding Children}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                        </StackPanel>
-                    </TreeDataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsGroup}">
+								<i:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
+								<i:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
+								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsRepository}"/>
+								<TextBlock Text="{Binding Name}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsRepository}">
+								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsRepository}"/>
+								<TextBlock Text="{Binding Name}"/>
+							</StackPanel>
+						</StackPanel>
+					</TreeDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
             <GridSplitter

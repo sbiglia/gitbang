@@ -84,7 +84,7 @@ namespace Gitbang.Views
             var themesNames = new List<string>();
             var themes = new List<IStyle>();
 
-            foreach (var file in Directory.EnumerateFiles("Themes", "*.xaml"))
+            /*foreach (var file in Directory.EnumerateFiles("Themes", "*.xaml"))
             {
                 try
                 {
@@ -96,7 +96,7 @@ namespace Gitbang.Views
                 {
                     MessageBox.Show(ex.Message, string.Format(Core.Properties.Resources.UnableLoadTheme, file));
                 }
-            }
+            }*/
 
             if (themes.Count == 0)
             {
@@ -117,9 +117,15 @@ namespace Gitbang.Views
             themesDropDown.Items = themesNames;
             themesDropDown.SelectionChanged += (sender, e) =>
             {
-                Styles[0] = themes[themesDropDown.SelectedIndex];
+                var faTheme = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
+
+                if (themesDropDown.SelectedItem == null)
+                    return;
+                
+                faTheme.RequestedTheme = (string)themesDropDown.SelectedItem;
+                /*Styles[0] = themes[themesDropDown.SelectedIndex];
                 _sessionSettings.Theme = themesNames[themesDropDown.SelectedIndex];
-                ApplyTheme();
+                ApplyTheme();*/
             };
 
             Styles.Add(themes[0]);

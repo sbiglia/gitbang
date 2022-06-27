@@ -8,6 +8,7 @@
         <styling:FluentAvaloniaTheme />
         <StyleInclude Source="avares://Gitbang.Core/Controls/DockedPane.xaml" />
         <StyleInclude Source="avares://Gitbang.Core/Controls/SearchBox.xaml" />
+		<StyleInclude Source="avares://Gitbang/Assets/Icons.xaml" />
 
         <Style Selector="Window.DialogWindow" >
             <Setter Property="ShowInTaskbar" Value="False"/>

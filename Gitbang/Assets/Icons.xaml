@@ -1,0 +1,26 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=netstandard">
+    <Design.PreviewWith>
+        <StackPanel Orientation="Vertical">
+            <StackPanel.Styles>
+                <Style Selector="DrawingPresenter">
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="Width" Value="{Binding Bounds.Height, RelativeSource={RelativeSource Mode=Self}}"/>
+                    <Setter Property="Drawing" Value="{DynamicResource Icon.TilesView}"/>
+                </Style>
+            </StackPanel.Styles>
+            <DrawingPresenter Height="16"/>
+            <DrawingPresenter Height="24"/>
+            <DrawingPresenter Height="32"/>
+            <DrawingPresenter Height="48"/>
+            <DrawingPresenter Height="64"/>
+            <DrawingPresenter Height="96"/>
+        </StackPanel>
+    </Design.PreviewWith>
+    <Style>
+        <Style.Resources>
+            
+        </Style.Resources>
+    </Style>
+</Styles>

@@ -11,6 +11,10 @@ namespace Gitbang.Models
 {
     public class TreeNodeModel : ModelBase
     {
+
+        public delegate void TreeNodeExpanded(TreeNodeModel node, bool isExpaded);
+        public event TreeNodeExpanded NodeExpanded;
+
         public TreeNodeModel(TreeNodeType? nodeType)
         {
             Children = new ObservableCollection<TreeNodeModel>();
@@ -32,6 +36,19 @@ namespace Gitbang.Models
         {
             get => Get<string>();
             set => Set(value);
+        }
+
+        public bool IsExpanded
+        {
+            get => Get<bool>();
+            set
+            {
+                Set(value);
+                var handler = NodeExpanded;
+                if(handler == null)
+                    return;
+                handler.Invoke(this,value);
+            }
         }
 
         public ObservableCollection<TreeNodeModel> Children { get; }

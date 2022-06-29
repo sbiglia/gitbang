@@ -14,9 +14,15 @@
 
   <DockPanel>
   <TreeView Items="{Binding Items}">
-    <TreeView.ItemTemplate>
+      <TreeView.ItemTemplate>
       <TreeDataTemplate ItemsSource="{Binding Children}">
-        <TextBlock Foreground="Red" Text="{Binding Name}" />
+		  <TextBlock Foreground="Red" Text="{Binding Name}" >
+              <TextBlock.ContextMenu>
+                  <ContextMenu>
+                      <MenuItem Header="sarasa"/>
+                  </ContextMenu>
+              </TextBlock.ContextMenu>
+		  </TextBlock>
       </TreeDataTemplate>
     </TreeView.ItemTemplate>
   </TreeView>

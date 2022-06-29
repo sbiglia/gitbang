@@ -70,11 +70,74 @@ namespace Gitbang.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Group....
+        /// </summary>
+        public static string Group_Add {
+            get {
+                return ResourceManager.GetString("Group_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove....
+        /// </summary>
+        public static string Group_Delete {
+            get {
+                return ResourceManager.GetString("Group_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename....
+        /// </summary>
+        public static string Group_Rename {
+            get {
+                return ResourceManager.GetString("Group_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
         public static string LightTheme {
             get {
                 return ResourceManager.GetString("LightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add/Create Repositoy....
+        /// </summary>
+        public static string Repo_AddRepository {
+            get {
+                return ResourceManager.GetString("Repo_AddRepository", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open In Terminal.
+        /// </summary>
+        public static string Repo_OpenInTerminal {
+            get {
+                return ResourceManager.GetString("Repo_OpenInTerminal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename....
+        /// </summary>
+        public static string Repo_Rename {
+            get {
+                return ResourceManager.GetString("Repo_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reveal In Explorer.
+        /// </summary>
+        public static string Repo_RevealInExplorer {
+            get {
+                return ResourceManager.GetString("Repo_RevealInExplorer", resourceCulture);
             }
         }
         

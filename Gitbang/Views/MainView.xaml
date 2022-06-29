@@ -9,12 +9,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d:DesignHeight="500" d:DesignWidth="500"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         mc:Ignorable="d"
         x:Class="Gitbang.Views.MainView">
 	<NativeMenu.Menu>
 		<NativeMenu>
 		</NativeMenu>
 	</NativeMenu.Menu>
+	<Window.Resources>
+		<controls:CommandBarFlyout x:Key="GroupContextMenu">
+			<controls:CommandBarFlyout.SecondaryCommands>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Add}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Delete}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Rename}"></controls:CommandBarButton>
+			</controls:CommandBarFlyout.SecondaryCommands>
+		</controls:CommandBarFlyout>
+		<controls:CommandBarFlyout x:Key="RepositoryContextMenu">
+			<controls:CommandBarFlyout.SecondaryCommands>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_AddRepository}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_RevealInExplorer}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_OpenInTerminal}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_Rename}"></controls:CommandBarButton>
+			</controls:CommandBarFlyout.SecondaryCommands>
+		</controls:CommandBarFlyout>
+	</Window.Resources>
 	<DockPanel>
 		<Menu DockPanel.Dock ="Top" Name ="MainMenu" >
 			<MenuItem Header="_File">
@@ -35,11 +53,11 @@
 			</ListBox.ItemsPanel>
 			<TextBlock Text="{x:Static properties:Resources.Themes}" VerticalAlignment="Center"/>
 			<ComboBox x:Name="Themes" SelectedIndex="0" Width="100">
-                <ComboBoxItem>Light</ComboBoxItem>
+				<ComboBoxItem>Light</ComboBoxItem>
 				<ComboBoxItem>Dark</ComboBoxItem>
-            </ComboBox>
+			</ComboBox>
 		</ListBox>
-		<Border x:Name="StatusBar" BorderThickness="1" BorderBrush="Gray" DockPanel.Dock="Bottom" Height="26" IsVisible="false">
+		<Border x:Name="StatusBar" BorderThickness="1" BorderBrush="Gray" DockPanel.Dock="Bottom" Height="26" IsVisible="False">
 			<TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        x:Name="StatusLabel"
@@ -63,28 +81,32 @@
 			</Grid.RowDefinitions>
 			<TreeView
                 Name="TreeView"
-                DragDrop.AllowDrop="True"
-				BorderThickness="0,1,1,1" IsVisible="true" 
+                BorderThickness="0,1,1,1" IsVisible="true"
                 Items="{Binding Node.Children, Mode=OneWay}"
                 SelectionMode="Single">
+                <TreeView.Styles>
+					<Style Selector="TreeViewItem">
+						<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"></Setter>
+					</Style>
+				</TreeView.Styles>
 				<TreeView.ItemTemplate>
 					<TreeDataTemplate ItemsSource ="{Binding Children}">
 						<StackPanel Orientation="Horizontal">
-							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsGroup}">
-								<i:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
-								<i:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
+							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsGroup}" ContextFlyout="{StaticResource GroupContextMenu}">
+								<i:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
+								<i:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
 								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsRepository}"/>
 								<TextBlock Text="{Binding Name}"/>
 							</StackPanel>
-							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsRepository}">
+							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsRepository}" ContextFlyout="{StaticResource RepositoryContextMenu}">
 								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsRepository}"/>
 								<TextBlock Text="{Binding Name}"/>
 							</StackPanel>
 						</StackPanel>
 					</TreeDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-            <GridSplitter
+				</TreeView.ItemTemplate>
+			</TreeView>
+			<GridSplitter
                 Grid.Column="1"
                 Margin="-5,0"
                 BorderThickness="5,0"
@@ -92,12 +114,12 @@
                 VerticalAlignment="Stretch"
                 Focusable="False"
                 BorderBrush="Transparent" />
-            <Grid x:Name="RightPane" Grid.Column="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
+			<Grid x:Name="RightPane" Grid.Column="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition
                         Width="*" />
-                </Grid.ColumnDefinitions>
-            </Grid>
+				</Grid.ColumnDefinitions>
+			</Grid>
 		</Grid>
 	</DockPanel>
 

@@ -120,8 +120,29 @@
   <data name="DarkTheme" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="Group_Add" xml:space="preserve">
+    <value>Add Group...</value>
+  </data>
+  <data name="Group_Delete" xml:space="preserve">
+    <value>Remove...</value>
+  </data>
+  <data name="Group_Rename" xml:space="preserve">
+    <value>Rename...</value>
+  </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Light</value>
+  </data>
+  <data name="Repo_AddRepository" xml:space="preserve">
+    <value>Add/Create Repositoy...</value>
+  </data>
+  <data name="Repo_OpenInTerminal" xml:space="preserve">
+    <value>Open In Terminal</value>
+  </data>
+  <data name="Repo_Rename" xml:space="preserve">
+    <value>Rename...</value>
+  </data>
+  <data name="Repo_RevealInExplorer" xml:space="preserve">
+    <value>Reveal In Explorer</value>
   </data>
   <data name="Themes" xml:space="preserve">
     <value>Themes</value>

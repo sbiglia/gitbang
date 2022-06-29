@@ -80,7 +80,7 @@ namespace Gitbang.Views
 
             _treeView = this.FindControl<TreeView>("TreeView");
             _treeView.SelectionChanged += TreeView_SelectionChanged;
-
+            
             var themesNames = new List<string>();
             var themes = new List<IStyle>();
 
@@ -140,9 +140,9 @@ namespace Gitbang.Views
             Application.Current?.FocusManager?.Focus(this);
         }
 
-        private void TreeView_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+        internal void TreeView_SelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+           // _treeView.ContextMenu.Open();
         }
 
         private void ApplyTheme()

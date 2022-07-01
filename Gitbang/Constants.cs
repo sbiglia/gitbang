@@ -13,6 +13,7 @@ namespace Gitbang
     {
         public const string AppName = "GitBang";
         public const string AppDescrioption = "";
+        public const string LogFileName = "gitbang.log";
 
         public static readonly Version Version;
         public static readonly string DataDirectory;

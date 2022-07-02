@@ -20,16 +20,16 @@ namespace Gitbang.ViewModels
         public MainViewModel()
         {
             WindowTitle = Constants.AppName;
-            Node = new TreeNodeModel(null);
+            Node = new TreeViewNodeModel(null);
 
-            var node = new TreeNodeModel(TreeNodeType.Group);
+            var node = new TreeViewNodeModel(TreeNodeType.Branch);
             node.Name = "Group1";
-            var node1 = new TreeNodeModel(TreeNodeType.Group);
+            var node1 = new TreeViewNodeModel(TreeNodeType.Branch);
             node1.Name = "Group2";
 
-            var node2 = new TreeNodeModel(TreeNodeType.Repository);
-            var node3 = new TreeNodeModel(TreeNodeType.Repository);
-            var node4 = new TreeNodeModel(TreeNodeType.Repository);
+            var node2 = new TreeViewNodeModel(TreeNodeType.Leaf);
+            var node3 = new TreeViewNodeModel(TreeNodeType.Leaf);
+            var node4 = new TreeViewNodeModel(TreeNodeType.Leaf);
 
             node2.Name = "Repo1";
             node3.Name = "Repo2";
@@ -43,7 +43,7 @@ namespace Gitbang.ViewModels
 
         }
 
-        public TreeNodeModel Node { get; }
+        public TreeViewNodeModel Node { get; }
 
     }
 }

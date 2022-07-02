@@ -9,28 +9,28 @@ using Gitbang.Core.Base;
 
 namespace Gitbang.Models
 {
-    public class TreeNodeModel : ModelBase
+    public class TreeViewNodeModel : ModelBase
     {
 
-        public delegate void TreeNodeExpanded(TreeNodeModel node, bool isExpaded);
+        public delegate void TreeNodeExpanded(TreeViewNodeModel node, bool isExpaded);
         public event TreeNodeExpanded NodeExpanded;
 
-        public TreeNodeModel(TreeNodeType? nodeType)
+        public TreeViewNodeModel(TreeNodeType? nodeType)
         {
-            Children = new ObservableCollection<TreeNodeModel>();
+            Children = new ObservableCollection<TreeViewNodeModel>();
             NodeType = nodeType;
         }
 
-        ~TreeNodeModel()
+        ~TreeViewNodeModel()
         {
 
         }
 
         internal TreeNodeType? NodeType { get; }
 
-        public bool IsGroup => NodeType == TreeNodeType.Group;
+        public bool IsBranch => NodeType == TreeNodeType.Branch;
 
-        public bool IsRepository => NodeType == TreeNodeType.Repository;
+        public bool IsLeaf => NodeType == TreeNodeType.Leaf;
 
         public string Name
         {
@@ -51,7 +51,7 @@ namespace Gitbang.Models
             }
         }
 
-        public ObservableCollection<TreeNodeModel> Children { get; }
+        public ObservableCollection<TreeViewNodeModel> Children { get; }
 
     }
 }

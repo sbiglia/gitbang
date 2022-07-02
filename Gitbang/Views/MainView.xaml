@@ -92,14 +92,13 @@
 				<TreeView.ItemTemplate>
 					<TreeDataTemplate ItemsSource ="{Binding Children}">
 						<StackPanel Orientation="Horizontal">
-							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsGroup}" ContextFlyout="{StaticResource GroupContextMenu}">
+							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsBranch}" ContextFlyout="{StaticResource GroupContextMenu}">
 								<i:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
 								<i:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
-								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsRepository}"/>
 								<TextBlock Text="{Binding Name}"/>
 							</StackPanel>
-							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsRepository}" ContextFlyout="{StaticResource RepositoryContextMenu}">
-								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsRepository}"/>
+							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsLeaf}" ContextFlyout="{StaticResource RepositoryContextMenu}">
+								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsLeaf}"/>
 								<TextBlock Text="{Binding Name}"/>
 							</StackPanel>
 						</StackPanel>

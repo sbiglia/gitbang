@@ -29,8 +29,8 @@ namespace Gitbang
 
     public enum TreeNodeType : byte
     {
-        Group,
-        Repository
+        Branch,
+        Leaf
     }
 	
 }

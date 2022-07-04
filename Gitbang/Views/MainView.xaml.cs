@@ -39,8 +39,7 @@ namespace Gitbang.Views
 
         public MainView()
         {
-            _appSettings = GitBangSettings.Load();
-            _sessionSettings = new SessionSettings(_appSettings);
+            _sessionSettings = ConfigurationManager.GetOrDefault<SessionSettings>();
             this.DataContext = new MainViewModel();
 
             var faTheme = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();

@@ -6,6 +6,7 @@ using Avalonia.Media.Immutable;
 
 namespace Gitbang.Core
 {
+
 	public static class SystemColors
 	{
 		public static IBrush ControlTextBrush { get; } = new ImmutableSolidColorBrush(Color.FromUInt32(0xFF000000));
@@ -26,6 +27,8 @@ namespace Gitbang.Core
 		public static Color ControlDarkColor { get; } = Color.FromUInt32(0xFFA0A0A0);
 		public static Color ControlDarkDarkColor { get; } = Color.FromUInt32(0xFF696969);
 		public static Color HighlightColor { get; } = Color.FromUInt32(0xFF3399FF);
+
+
 
 		// /// <summary>
 		// /// pull out values from system.drawing

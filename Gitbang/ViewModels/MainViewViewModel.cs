@@ -8,7 +8,7 @@ using Gitbang.Models;
 
 namespace Gitbang.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewViewModel : ViewModelBase
     {
 
         public string WindowTitle
@@ -17,7 +17,7 @@ namespace Gitbang.ViewModels
             private set => Set(value);
         }
 
-        public MainViewModel()
+        public MainViewViewModel()
         {
             WindowTitle = Constants.AppName;
             Node = new TreeViewNodeModel(null);

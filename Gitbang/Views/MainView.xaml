@@ -10,8 +10,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-        mc:Ignorable="d"
-        x:Class="Gitbang.Views.MainView">
+	    mc:Ignorable="d"
+        x:Class="Gitbang.Views.MainView"
+        xmlns:dd="clr-namespace:Gitbang.ViewModels">
+
+	<Design.DataContext>
+		<dd:MainViewViewModel/>
+    </Design.DataContext>
 	<NativeMenu.Menu>
 		<NativeMenu>
 		</NativeMenu>

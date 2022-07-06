@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Gitbang.Core.Settings.Interfaces;
 using Newtonsoft.Json;
 
 namespace Gitbang.Core.Settings
@@ -16,13 +17,8 @@ namespace Gitbang.Core.Settings
     /// Per-session setting:
     /// Loaded at startup; saved at exit.
     /// </summary>
-    public sealed class SessionSettings : JsonSettings
+    public sealed class SessionSettings : JsonSettings, ISessionSettings
     {
-
-        public SessionSettings()
-        {
-        }
-        
         [JsonProperty]
         public WindowState WindowState
         {
@@ -31,23 +27,23 @@ namespace Gitbang.Core.Settings
         }
         
         [JsonProperty]
-        public float SplitterPosition
+        public double SplitterPosition
         {
-            get => Get<float>();
+            get => Get<double>();
             set => Set(value);
         }
 
         [JsonProperty]
-        public float TopPaneSplitterPosition
+        public double TopPaneSplitterPosition
         {
-            get => Get<float>();
+            get => Get<double>();
             set => Set(value);
         }
 
         [JsonProperty]
-        public float BottomPaneSplitterPosition
+        public double BottomPaneSplitterPosition
         {
-            get => Get<float>();
+            get => Get<double>();
             set => Set(value);
         }
 

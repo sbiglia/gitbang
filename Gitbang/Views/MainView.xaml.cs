@@ -18,18 +18,17 @@ using AvaloniaEdit.Highlighting.Xshd;
 using FluentAvalonia.Styling;
 using Gitbang.Core.Controls;
 using Gitbang.Core.Settings;
+using Gitbang.Core.Settings.Interfaces;
 using Gitbang.ViewModels;
+using Serilog;
 
 
 namespace Gitbang.Views
 {
     public partial class MainView : PlatformDependentWindow
     {
-        private static SessionSettings _sessionSettings;
-
-        public static SessionSettings SessionSettings => _sessionSettings;
-
-        private readonly GitBangSettings _appSettings;
+        private readonly ISessionSettings _sessionSettings;
+        
         private TreeView _treeView;
         private Grid _mainGrid;
         private ContentPresenter _mainPane;
@@ -39,8 +38,13 @@ namespace Gitbang.Views
 
         public MainView()
         {
-            _sessionSettings = ConfigurationManager.GetOrDefault<SessionSettings>();
-            this.DataContext = new MainViewModel();
+            if (App.ConfigurationManager == null)
+            {
+                Log.Logger.Fatal("ConfigurationManager could not be null");
+                return;
+            }
+            _sessionSettings = App.ConfigurationManager.SessionSettings;
+            this.DataContext = new MainViewViewModel();
 
             var faTheme = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
 
@@ -122,9 +126,8 @@ namespace Gitbang.Views
                     return;
                 
                 faTheme.RequestedTheme = (string)themesDropDown.SelectedItem;
-                /*Styles[0] = themes[themesDropDown.SelectedIndex];
-                _sessionSettings.Theme = themesNames[themesDropDown.SelectedIndex];
-                ApplyTheme();*/
+                _sessionSettings.Theme = faTheme.RequestedTheme;
+
             };
 
             Styles.Add(themes[0]);
@@ -163,7 +166,6 @@ namespace Gitbang.Views
         {
             _sessionSettings.SplitterPosition = _leftMainGridColumn.Width.Value /
                                                 (_leftMainGridColumn.Width.Value + _rightMainGridColumn.Width.Value);
-            _sessionSettings.Save();
             return base.HandleClosing();
         }
     }

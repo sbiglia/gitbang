@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gitbang.Core.Settings.Interfaces
 {
-    public interface IConfigurationManager
+    public interface ISettingsManager
     {
         public ISessionSettings SessionSettings { get; }
         public void SaveConfiguration();

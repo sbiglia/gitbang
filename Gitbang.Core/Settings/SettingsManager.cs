@@ -8,7 +8,7 @@ using Gitbang.Core.Settings.Interfaces;
 
 namespace Gitbang.Core.Settings
 {
-    public class SettingsManager : IConfigurationManager
+    public class SettingsManager : ISettingsManager
     {
 
         private const string ConfigMutex = "355BE18F-FE69-437F-B8D2-7F085D975457";

@@ -41,10 +41,14 @@ namespace Gitbang.Views
             if (App.ConfigurationManager == null)
             {
                 Log.Logger.Fatal("ConfigurationManager could not be null");
-                return;
+                if(!Design.IsDesignMode)
+                    return;
             }
+
             _sessionSettings = App.ConfigurationManager.SessionSettings;
-            this.DataContext = new MainViewViewModel();
+
+
+            InitializeComponents();
 
             var faTheme = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
 
@@ -52,7 +56,6 @@ namespace Gitbang.Views
             faTheme.PreferSystemTheme = false;
             
 
-            InitializeComponents();
 #if DEBUG
             this.AttachDevTools();
 #endif

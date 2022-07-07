@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Gitbang.Core.Extensions;
@@ -19,17 +20,21 @@ namespace Gitbang
 {
     public partial class App : Application
     {
-        public static IConfigurationManager? ConfigurationManager { get; private set; }
+        public static ISettingsManager? ConfigurationManager { get; private set; }
 
         public App()
         {
             Name = "Gitbang";
+           
+            if (Design.IsDesignMode)
+                return;
+            ConfigurationManager = new SettingsManager(Locator.Current.GetService<IEnvironmentService>().GetApplicationDataDirectory());
         }
 
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            ConfigurationManager = new ConfigurationManager(Locator.Current.GetService<IEnvironmentService>().GetApplicationDataDirectory());
+            
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -41,7 +46,7 @@ namespace Gitbang
 
                 desktop.MainWindow = new MainView()
                 {
-                    DataContext = new MainViewViewModel()
+                    DataContext = Locator.Current.GetService<MainViewViewModel>()
                 };
             }
             base.OnFrameworkInitializationCompleted();

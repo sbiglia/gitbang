@@ -100,11 +100,17 @@
 							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsBranch}" ContextFlyout="{StaticResource GroupContextMenu}">
 								<i:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
 								<i:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
-								<TextBlock Text="{Binding Name}"/>
+								
+                                <TextBlock Text="{Binding Name}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsLeaf}" ContextFlyout="{StaticResource RepositoryContextMenu}">
 								<i:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsLeaf}"/>
-								<TextBlock Text="{Binding Name}"/>
+								<TextBlock  Text="{Binding Name}" IsVisible="{Binding !IsEditing}"/>
+                                <TextBox Text="{Binding Name}" IsVisible="{Binding IsEditing}">
+									<TextBox.KeyBindings>
+										<KeyBinding Gesture="Enter" Command="{Binding RenameCommand}"></KeyBinding>
+                                    </TextBox.KeyBindings>
+                                </TextBox>
 							</StackPanel>
 						</StackPanel>
 					</TreeDataTemplate>

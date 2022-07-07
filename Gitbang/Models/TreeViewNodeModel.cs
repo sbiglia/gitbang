@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Gitbang.Core;
 using Gitbang.Core.Base;
+using Newtonsoft.Json;
 
 namespace Gitbang.Models
 {
@@ -13,23 +14,24 @@ namespace Gitbang.Models
     {
 
         public delegate void TreeNodeExpanded(TreeViewNodeModel node, bool isExpaded);
-        public event TreeNodeExpanded NodeExpanded;
+        public event TreeNodeExpanded? NodeExpanded;
 
-        public TreeViewNodeModel(TreeNodeType? nodeType)
+        public TreeViewNodeModel()
         {
             Children = new ObservableCollection<TreeViewNodeModel>();
-            NodeType = nodeType;
         }
 
         ~TreeViewNodeModel()
         {
 
         }
-
-        internal TreeNodeType? NodeType { get; }
-
+        
+        public TreeNodeType? NodeType { get; init; }
+        
+        [JsonIgnore]
         public bool IsBranch => NodeType == TreeNodeType.Branch;
-
+        
+        [JsonIgnore]
         public bool IsLeaf => NodeType == TreeNodeType.Leaf;
 
         public string Name
@@ -38,6 +40,12 @@ namespace Gitbang.Models
             set => Set(value);
         }
 
+        public bool IsEditing
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        
         public bool IsExpanded
         {
             get => Get<bool>();
@@ -45,13 +53,11 @@ namespace Gitbang.Models
             {
                 Set(value);
                 var handler = NodeExpanded;
-                if(handler == null)
-                    return;
-                handler.Invoke(this,value);
+                handler?.Invoke(this,value);
             }
         }
 
-        public ObservableCollection<TreeViewNodeModel> Children { get; }
+        public ObservableCollection<TreeViewNodeModel> Children { get; init; }
 
     }
 }

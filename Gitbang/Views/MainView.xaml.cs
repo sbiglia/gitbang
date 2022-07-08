@@ -9,6 +9,7 @@ using System.Xml;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Media;
@@ -35,6 +36,7 @@ namespace Gitbang.Views
         private Menu _mainMenu;
         private ColumnDefinition _leftMainGridColumn;
         private ColumnDefinition _rightMainGridColumn;
+        private TextBox _part_textBox;
 
         public MainView()
         {
@@ -75,6 +77,8 @@ namespace Gitbang.Views
 
             _mainMenu = this.FindControl<Menu>("MainMenu");
             _mainGrid = this.FindControl<Grid>("MainGrid");
+
+             
             _leftMainGridColumn = _mainGrid.ColumnDefinitions[0];
             _rightMainGridColumn = _mainGrid.ColumnDefinitions[2];
 
@@ -84,7 +88,7 @@ namespace Gitbang.Views
                 _rightMainGridColumn.Width = new GridLength(1 - _sessionSettings.SplitterPosition, GridUnitType.Star);
             }
 
-            _treeView = this.FindControl<TreeView>("TreeView");
+            _treeView = this.FindControl<TreeView>("RepoIndexTreeView");
             _treeView.SelectionChanged += TreeView_SelectionChanged;
             
             var themesNames = new List<string>();
@@ -170,6 +174,27 @@ namespace Gitbang.Views
             _sessionSettings.SplitterPosition = _leftMainGridColumn.Width.Value /
                                                 (_leftMainGridColumn.Width.Value + _rightMainGridColumn.Width.Value);
             return base.HandleClosing();
+        }
+        
+        private void PART_TextBox_OnLostFocus(object? sender, RoutedEventArgs e)
+        {
+            //e.Handled = false;
+        }
+        
+        private void PART_TextBox_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+
+            if (e.Property.Name == "IsVisible" && e.NewValue is true)
+            {
+                var textbox = sender as TextBox;
+
+                if (textbox != null)
+                {
+                    textbox.Focus();
+                    textbox.SelectAll();
+                }
+                    
+            }
         }
     }
 }

@@ -50,17 +50,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.15" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.16" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.15.1" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.15.1" />
     <PackageReference Include="FluentAvaloniaUI" Version="1.4.1" />
-    <PackageReference Include="Projektanker.Icons.Avalonia" Version="5.0.2" />
-    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="5.0.2" />
-    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="5.0.2" />
-    <PackageReference Include="ReactiveUI" Version="13.2.10" />
+    <PackageReference Include="Projektanker.Icons.Avalonia" Version="5.1.0" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="5.1.0" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="5.1.0" />
+    <PackageReference Include="ReactiveUI" Version="18.2.5" />
     <PackageReference Include="Serilog" Version="2.11.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="Splat" Version="10.0.1" />
+    <PackageReference Include="Splat" Version="14.3.4" />
   </ItemGroup>
 
   <ItemGroup>

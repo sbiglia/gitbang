@@ -23,6 +23,12 @@ namespace Gitbang.ViewModels
 
         public ICommand RenameCommand { get; }
 
+
+        public MainViewViewModel()
+        {
+
+        }
+
         public MainViewViewModel(IReposIndexManager reposIndexManager)
         {
 
@@ -71,15 +77,23 @@ namespace Gitbang.ViewModels
             Node.Children.Add(node);
             Node.Children.Add(node2);
 
-            RenameCommand = ReactiveCommand.Create(Rename);
+            RenameCommand = ReactiveCommand.Create<TreeViewNodeModel?>(Rename);
 
         }
 
         public TreeViewNodeModel Node { get; init; }
 
 
-        public void Rename()
+        public void Rename(TreeViewNodeModel? selectedItem)
         {
+
+            //var item = selectedItem as TreeViewNodeModel;
+
+            if(selectedItem == null)
+                return;
+
+
+            selectedItem.IsEditing = true;
 
         }
 

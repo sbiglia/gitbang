@@ -4,16 +4,16 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace Gitbang.Core.Services
+namespace Gitbang.Core.Helpers
 {
-    public class EnvironmentService: IEnvironmentService
+    public static class EnvironmentData
     {
-        public string GetApplicationDataDirectory()
+        public static string GetApplicationDataDirectory()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GitBang");
         }
 
-        public string GetIntanceDirectory()
+        public static string GetIntanceDirectory()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }

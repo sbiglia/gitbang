@@ -36,39 +36,42 @@ namespace Gitbang.ViewModels
 
             WindowTitle = Constants.AppName;
             
-            Node = new TreeViewNodeModel()
+            Node = new FolderNodeModel()
             {
                 Children = _reposIndexManager.Repositories
             };
             
-            var node = new TreeViewNodeModel()
+            var node = new FolderNodeModel()
             {
                 NodeType = TreeNodeType.Branch,
                 Name = "Group1"
             };
 
-            var node1 = new TreeViewNodeModel()
+            var node1 = new FolderNodeModel()
             {
                 NodeType = TreeNodeType.Branch,
                 Name = "Group2"
             };
 
-            var node2 = new TreeViewNodeModel()
+            var node2 = new RepositoryNodeModel()
             {
                 NodeType = TreeNodeType.Leaf,
                 Name = "Repo1",
+                Path = "c:\\sarasa\\Repo1"
             };
 
-            var node3 = new TreeViewNodeModel()
+            var node3 = new RepositoryNodeModel()
             {
                 NodeType = TreeNodeType.Leaf,
                 Name = "Repo2",
+                Path = "c:\\sareasaasa\\asdasdasdas\\asdasds\\"
             };
             
-            var node4 = new TreeViewNodeModel()
+            var node4 = new RepositoryNodeModel()
             {
                 NodeType = TreeNodeType.Leaf,
                 Name = "Repo3",
+                Path = "c:\\sdfsdfsd\\sdfsdfs\\dfsdfsdf"
             };
             
             node.Children.Add(node3);
@@ -77,14 +80,14 @@ namespace Gitbang.ViewModels
             Node.Children.Add(node);
             Node.Children.Add(node2);
 
-            RenameCommand = ReactiveCommand.Create<TreeViewNodeModel?>(Rename);
+            RenameCommand = ReactiveCommand.Create<TreeViewNodeModelBase?>(Rename);
 
         }
 
-        public TreeViewNodeModel Node { get; init; }
+        public TreeViewNodeModelBase Node { get; init; }
 
 
-        public void Rename(TreeViewNodeModel? selectedItem)
+        public void Rename(TreeViewNodeModelBase? selectedItem)
         {
 
             //var item = selectedItem as TreeViewNodeModel;

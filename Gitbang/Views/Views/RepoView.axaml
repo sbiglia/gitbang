@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UserControl x:Class="Gitbang.Views.Views.RepoView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Gitbang.ViewModels.Views"
+             mc:Ignorable="d"
+             d:DesignWidth="700" d:DesignHeight="700">
+    <Design.DataContext>
+		<views:RepoViewViewModel></views:RepoViewViewModel>
+    </Design.DataContext>
+    <Grid Focusable="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="150" Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition MinWidth="3" Width="3"></ColumnDefinition>
+                <ColumnDefinition MinWidth="400" Width="0.90*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button Command="{Binding LoadRepoCommand}">Load</Button>
+                <TreeView>
+                
+                </TreeView>
+            </Grid>
+            <GridSplitter Grid.Column="1"
+                          ResizeDirection="Columns"></GridSplitter>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="0.2*"></RowDefinition>
+                </Grid.RowDefinitions>
+				<Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"></RowDefinition>
+                            <RowDefinition Height="1"></RowDefinition>
+                            <RowDefinition Height="0.5*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <GridSplitter Grid.Row="1"></GridSplitter>
+                    </Grid>
+                    <GridSplitter Grid.Column="1"></GridSplitter>
+                </Grid>
+				<GridSplitter Grid.Row="1" ResizeDirection="Rows"></GridSplitter>
+            </Grid>
+        </Grid>
+        <StackPanel></StackPanel>
+    </Grid>
+</UserControl>

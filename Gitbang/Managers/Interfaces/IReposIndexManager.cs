@@ -5,7 +5,7 @@ namespace Gitbang.Managers.Interfaces;
 
 public interface IReposIndexManager
 {
-    public ObservableCollection<TreeViewNodeModel> Repositories { get; }
-    public ObservableCollection<TreeViewNodeModel> LoadReposIndex();
+    public ObservableCollection<TreeViewNodeModelBase> Repositories { get; }
+    public ObservableCollection<TreeViewNodeModelBase> LoadReposIndex();
     public void SaveReposIndex();
 }

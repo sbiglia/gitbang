@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mime;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Xml;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Styling;
@@ -20,6 +22,7 @@ using FluentAvalonia.Styling;
 using Gitbang.Core.Controls;
 using Gitbang.Core.Settings;
 using Gitbang.Core.Settings.Interfaces;
+using Gitbang.Models;
 using Gitbang.ViewModels;
 using Serilog;
 
@@ -36,10 +39,10 @@ namespace Gitbang.Views
         private Menu _mainMenu;
         private ColumnDefinition _leftMainGridColumn;
         private ColumnDefinition _rightMainGridColumn;
-        private TextBox _part_textBox;
-
+        
         public MainView()
         {
+
             if (App.ConfigurationManager == null)
             {
                 Log.Logger.Fatal("ConfigurationManager could not be null");
@@ -49,9 +52,8 @@ namespace Gitbang.Views
 
             _sessionSettings = App.ConfigurationManager.SessionSettings;
 
-
             InitializeComponents();
-
+            
             var faTheme = AvaloniaLocator.Current.GetService<FluentAvaloniaTheme>();
 
             faTheme.RequestedTheme = "Dark";
@@ -93,21 +95,7 @@ namespace Gitbang.Views
             
             var themesNames = new List<string>();
             var themes = new List<IStyle>();
-
-            /*foreach (var file in Directory.EnumerateFiles("Themes", "*.xaml"))
-            {
-                try
-                {
-                    var theme = AvaloniaRuntimeXamlLoader.Parse<Styles>(File.ReadAllText(file));
-                    themes.Add(theme);
-                    themesNames.Add(Path.GetFileNameWithoutExtension(file));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, string.Format(Core.Properties.Resources.UnableLoadTheme, file));
-                }
-            }*/
-
+            
             if (themes.Count == 0)
             {
                 var light = AvaloniaRuntimeXamlLoader.Parse<StyleInclude>(
@@ -176,24 +164,55 @@ namespace Gitbang.Views
             return base.HandleClosing();
         }
         
-        private void PART_TextBox_OnLostFocus(object? sender, RoutedEventArgs e)
+        private void TextBoxGroupOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
         {
-            //e.Handled = false;
-        }
-        
-        private void PART_TextBox_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
-        {
-
-            if (e.Property.Name == "IsVisible" && e.NewValue is true)
+            switch (e.Property.Name)
             {
-                var textbox = sender as TextBox;
-
-                if (textbox != null)
+                case "IsVisible" when e.NewValue is true:
                 {
-                    textbox.Focus();
-                    textbox.SelectAll();
+                    if (sender is TextBox textbox)
+                    {
+                        textbox.Focus();
+                        textbox.SelectAll();
+                    }
+
+                    break;
                 }
-                    
+                case "IsFocused" when e.OldValue is true && e.NewValue is false:
+                {
+                    if (sender is TextBox { DataContext: TreeViewNodeModelBase viewModel, IsVisible: true})
+                    {
+                        viewModel.CancelEditCommand.Execute(null);
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        private void TextBoxRepoOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            switch (e.Property.Name)
+            {
+                case "IsVisible" when e.NewValue is true:
+                {
+                    if (sender is TextBox textbox)
+                    {
+                        textbox.Focus();
+                        textbox.SelectAll();
+                    }
+
+                    break;
+                }
+                case "IsFocused" when e.OldValue is true && e.NewValue is false:
+                {
+                    if (sender is TextBox { DataContext: TreeViewNodeModelBase viewModel, IsVisible: true })
+                    {
+                        viewModel.CancelEditCommand.Execute(null);
+                    }
+
+                    break;
+                }
             }
         }
     }

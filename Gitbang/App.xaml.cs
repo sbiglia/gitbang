@@ -8,7 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Gitbang.Core.Extensions;
-using Gitbang.Core.Services;
+using Gitbang.Core.Helpers;
 using Gitbang.Core.Settings;
 using Gitbang.Core.Settings.Interfaces;
 using Gitbang.ViewModels;
@@ -20,15 +20,16 @@ namespace Gitbang
 {
     public partial class App : Application
     {
-        public static ISettingsManager? ConfigurationManager { get; private set; }
+        public static ISettingsManager ConfigurationManager { get; private set; }
 
         public App()
         {
             Name = "Gitbang";
-           
+            ConfigurationManager = new SettingsManager(EnvironmentData.GetApplicationDataDirectory());
+
             if (Design.IsDesignMode)
                 return;
-            ConfigurationManager = new SettingsManager(Locator.Current.GetService<IEnvironmentService>().GetApplicationDataDirectory());
+            
         }
 
         public override void Initialize()
@@ -54,7 +55,7 @@ namespace Gitbang
 
         private void OnExit(object? sender, ControlledApplicationLifetimeExitEventArgs e)
         {
-            ConfigurationManager?.SaveConfiguration();
+            ConfigurationManager.SaveConfiguration();
         }
 
         internal static IClassicDesktopStyleApplicationLifetime? Lifetime => Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;

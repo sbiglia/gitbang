@@ -14,7 +14,9 @@
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
 	    mc:Ignorable="d"
         x:Class="Gitbang.Views.MainView"
-        xmlns:dd="clr-namespace:Gitbang.ViewModels">
+        xmlns:dd="clr-namespace:Gitbang.ViewModels"
+        xmlns:models="clr-namespace:Gitbang.Models"
+        xmlns:views="clr-namespace:Gitbang.Views.Views">
 
     <Design.DataContext>
         <dd:MainViewViewModel/>
@@ -28,15 +30,19 @@
 			<controls:CommandBarFlyout.SecondaryCommands>
 				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Add}"></controls:CommandBarButton>
 				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Delete}"></controls:CommandBarButton>
-				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Rename}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Group_Rename}" Command="{Binding RenameCommand}"></controls:CommandBarButton>
+				<controls:CommandBarSeparator></controls:CommandBarSeparator>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_AddRepository}"></controls:CommandBarButton>
 			</controls:CommandBarFlyout.SecondaryCommands>
 		</controls:CommandBarFlyout>
 		<controls:CommandBarFlyout x:Key="RepositoryContextMenu">
 			<controls:CommandBarFlyout.SecondaryCommands>
+                <controls:CommandBarButton Label="{x:Static properties:Resources.Group_Add}"></controls:CommandBarButton>
+				<controls:CommandBarSeparator></controls:CommandBarSeparator>
 				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_AddRepository}"></controls:CommandBarButton>
 				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_RevealInExplorer}"></controls:CommandBarButton>
 				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_OpenInTerminal}"></controls:CommandBarButton>
-				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_Rename}"></controls:CommandBarButton>
+				<controls:CommandBarButton Label="{x:Static properties:Resources.Repo_Rename}" Command="{Binding RenameCommand}"></controls:CommandBarButton>
 			</controls:CommandBarFlyout.SecondaryCommands>
 		</controls:CommandBarFlyout>
 	</Window.Resources>
@@ -88,9 +94,11 @@
 			</Grid.RowDefinitions>
 			<TreeView
                 x:Name="RepoIndexTreeView"
-                BorderThickness="0,1,1,1" IsVisible="true"
+                BorderThickness="1,1,1,1" IsVisible="true"
+				BorderBrush="White"
                 Items="{Binding Node.Children, Mode=OneWay}"
-				SelectionMode="Single">
+				SelectionMode="Toggle"
+                ContextFlyout="{StaticResource GroupContextMenu}">
 				<TreeView.KeyBindings>
 					<KeyBinding Gesture="F2" Command="{Binding RenameCommand}" CommandParameter="{Binding #RepoIndexTreeView.SelectedItem}"></KeyBinding>
                 </TreeView.KeyBindings>
@@ -99,29 +107,35 @@
 						<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"></Setter>
                     </Style>
                 </TreeView.Styles>
-				<TreeView.ItemTemplate>
-					<TreeDataTemplate ItemsSource ="{Binding Children}">
-						<StackPanel Orientation="Horizontal">
-							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsBranch}" ContextFlyout="{StaticResource GroupContextMenu}">
-								<ic:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
-								<ic:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
-								
-                                <TextBlock Text="{Binding Name}"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" IsVisible="{Binding IsLeaf}" ContextFlyout="{StaticResource RepositoryContextMenu}">
-								<ic:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsLeaf}"/>
-								<TextBlock  Text="{Binding Name}" IsVisible="{Binding !IsEditing}"/>
-                                <TextBox Name="PART_TextBox" Text="{Binding Name}" IsVisible="{Binding IsEditing}"  PropertyChanged="PART_TextBox_OnPropertyChanged">
-									<TextBox.KeyBindings>
-										<KeyBinding Gesture="Escape" Command="{Binding CancelEditCommand}"></KeyBinding>
-										<KeyBinding Gesture="Enter" Command="{Binding RenameCommand}"></KeyBinding>
-                                        <KeyBinding Gesture="Tab" Command="{Binding RenameCommand}"></KeyBinding>
-                                    </TextBox.KeyBindings>
-                                </TextBox>
-							</StackPanel>
+				<TreeView.DataTemplates>
+					<TreeDataTemplate DataType="models:FolderNodeModel" ItemsSource ="{Binding Children}">
+						<StackPanel Orientation="Horizontal" IsVisible="{Binding IsBranch}" ContextFlyout="{StaticResource GroupContextMenu}">
+							<ic:Icon Value="fa-duotone fa-folder-closed" Margin="0 0 10 0" IsVisible="{Binding !IsExpanded}"/>
+							<ic:Icon Value="fa-duotone fa-folder-open" Margin="0 0 10 0" IsVisible="{Binding IsExpanded}"/>
+                            <TextBlock Text="{Binding Name}" IsVisible="{Binding !IsEditing}" />
+							<TextBox Name="TextBoxGroup" Text="{Binding Name}" IsVisible="{Binding IsEditing}" PropertyChanged="TextBoxGroupOnPropertyChanged">
+								<TextBox.KeyBindings>
+                                    <KeyBinding Gesture="Escape" Command="{Binding CancelEditCommand}"></KeyBinding>
+                                    <KeyBinding Gesture="Enter" Command="{Binding RenameCommand}"></KeyBinding>
+                                    <KeyBinding Gesture="Tab" Command="{Binding CancelEditCommand}"></KeyBinding>
+                                </TextBox.KeyBindings>
+							</TextBox>
 						</StackPanel>
-					</TreeDataTemplate>
-				</TreeView.ItemTemplate>
+                    </TreeDataTemplate>
+                    <TreeDataTemplate DataType="models:RepositoryNodeModel" ItemsSource ="{Binding Children}">
+                        <StackPanel Orientation="Horizontal" IsVisible="{Binding IsLeaf}" ContextFlyout="{StaticResource RepositoryContextMenu}">
+                            <ic:Icon Value="fa-duotone fa-database" Margin="0 0 10 0" IsVisible="{Binding IsLeaf}" ToolTip.Tip="{Binding Path}"/>
+                            <TextBlock  Text="{Binding Name}" IsVisible="{Binding !IsEditing}" ToolTip.Tip="{Binding Path}"/>
+                            <TextBox Name="TextBoxRepo" Text="{Binding Name}" IsVisible="{Binding IsEditing}"  PropertyChanged="TextBoxRepoOnPropertyChanged">
+                                <TextBox.KeyBindings>
+                                    <KeyBinding Gesture="Escape" Command="{Binding CancelEditCommand}"></KeyBinding>
+                                    <KeyBinding Gesture="Enter" Command="{Binding RenameCommand}"></KeyBinding>
+                                    <KeyBinding Gesture="Tab" Command="{Binding CancelEditCommand}"></KeyBinding>
+                                </TextBox.KeyBindings>
+                            </TextBox>
+                        </StackPanel>
+                    </TreeDataTemplate>
+				</TreeView.DataTemplates>
 			</TreeView>
 			<GridSplitter
                 Grid.Column="1"
@@ -136,6 +150,7 @@
 					<ColumnDefinition
                         Width="*" />
 				</Grid.ColumnDefinitions>
+				<views:RepoView Grid.Column="0"></views:RepoView>
 			</Grid>
 		</Grid>
 	</DockPanel>
